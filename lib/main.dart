@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'canada.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => MyHomePage(title: 'Laslo Hauschild'),
       },
-      initialRoute: '/',
+      initialRoute: '',
     );
   }
 }
