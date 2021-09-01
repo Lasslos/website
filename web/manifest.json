@@ -1,11 +1,11 @@
 {
-    "name": "website",
-    "short_name": "website",
+    "name": "Canada - Laslo Hauschild",
+    "short_name": "Canada - Laslo Hauschild",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "My website.",
+    "description": "Laslo Hauschild's personal website. I spend a whole year in Canada, Kimberley BC. Enjoy photos of beautiful nature on my website!",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

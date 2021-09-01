@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => GetMaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Laslo Hauschild',
+    title: 'Canada - Laslo Hauschild',
     theme: ThemeData(
       brightness: Brightness.light,
       primarySwatch: Colors.teal,

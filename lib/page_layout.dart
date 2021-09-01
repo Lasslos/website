@@ -11,6 +11,9 @@ class PageLayout extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
     key: scaffoldKey,
     appBar: buildAppBar(context, scaffoldKey),
+    drawer: Drawer(
+
+    ),
     body: ResponsiveWidget(
       largeSizedWidget: LargePage(),
       smallSizedWidget: SmallPage(),
