@@ -7,48 +7,25 @@ import 'custom_text.dart';
 
 class LargePage extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => Column(
-    children: [
+  Widget build(BuildContext context) =>
       Container(
         color: style.base,
-        constraints: BoxConstraints(
-          minHeight: MediaQuery.of(context).size.height - 55 - 100, //Size of screen minus size of appBar minus size of information bar below.
-        ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              flex: 1,
-              child: SideMenu()
-            ),
+            Expanded(child: SideMenu()),
             Container(
               width: 1,
               color: style.inactive,
               margin: EdgeInsets.only(top: 5, bottom: 5),
             ),
             Expanded(
-              flex: 4,
+              flex: 5,
               child: Container(
-                color: style.base,
-                margin: EdgeInsets.all(20),
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 child: localNavigator(),
               ),
             ),
           ],
         ),
-      ),
-      SizedBox(
-        height: 100,
-        child: Container(
-          color: style.base_contrast,
-          child: Center(
-            child: CustomText(
-              '',
-              color: Colors.white,
-            ),
-          ),
-        ),
-      )
-    ],
-  );
+      );
 }

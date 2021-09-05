@@ -13,7 +13,7 @@ class SideMenu extends StatelessWidget {
     child: Column(
       children: [
         if (ResponsiveWidget.isSmallScreenSize(context)) _buildTitle(),
-        _buildSideMenuList(),
+        _buildSideMenuColumn(),
       ],
     ),
   );
@@ -34,7 +34,7 @@ class SideMenu extends StatelessWidget {
     ),
   );
 
-  Widget _buildSideMenuList() {
+  Widget _buildSideMenuColumn() {
     var children = <Widget>[];
     routes.forEach((element) {
       children.add(Container(height: 10));

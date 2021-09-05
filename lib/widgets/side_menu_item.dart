@@ -37,7 +37,7 @@ class HorizontalSideMenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) => reference.buildRouteStateWidget((state) =>
       Container(
-        color: state == RouteState.HOVER ? style.inactive.withOpacity(.1) : Colors.transparent,
+        color: state != RouteState.INACTIVE ? style.inactive.withOpacity(.1) : Colors.transparent,
         child: Row(
           children: [
             Visibility(
@@ -82,7 +82,7 @@ class VerticalSideMenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) => reference.buildRouteStateWidget((state) =>
       Container(
-        color: RouteState.HOVER == state ? style.inactive.withOpacity(.1) : Colors.transparent,
+        color: state != RouteState.INACTIVE ? style.inactive.withOpacity(.1) : Colors.transparent,
         child: Row(
           children: [
             Visibility(
