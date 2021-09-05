@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:website/constants/style.dart' as style;
+import 'package:website/widgets/side_menu.dart';
 
 import 'custom_text.dart';
 
@@ -7,24 +8,27 @@ class LargePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Column(
     children: [
-      Expanded(
+      Container(
+        color: style.base,
+        constraints: BoxConstraints(
+          minHeight: MediaQuery.of(context).size.height - 55 - 100, //Size of screen minus size of appBar minus size of information bar below.
+        ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               flex: 1,
-              child: Container(
-                color: style.light,
-              ),
+              child: SideMenu()
             ),
             Container(
               width: 1,
-              color: style.light_gray,
+              color: style.inactive,
               margin: EdgeInsets.only(top: 5, bottom: 5),
             ),
             Expanded(
               flex: 4,
               child: Container(
-                color: style.light,
+                color: style.base,
                 margin: EdgeInsets.all(20),
                 child: Center(
                   child: CustomText(
@@ -40,7 +44,7 @@ class LargePage extends StatelessWidget {
       SizedBox(
         height: 100,
         child: Container(
-          color: style.darker,
+          color: style.base_contrast,
           child: Center(
             child: CustomText(
               '',

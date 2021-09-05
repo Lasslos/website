@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     theme: ThemeData(
       brightness: Brightness.light,
       primarySwatch: Colors.teal,
-      textTheme: GoogleFonts.mulishTextTheme(
+      textTheme: GoogleFonts.inikaTextTheme(
         Theme.of(context).textTheme
       ).apply(
         bodyColor: Colors.black

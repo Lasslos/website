@@ -5,7 +5,7 @@ import 'package:website/constants/style.dart' as style;
 import 'package:website/widgets/custom_text.dart';
 
 AppBar buildAppBar(BuildContext context, GlobalKey<ScaffoldState> scaffoldKey) => AppBar(
-  backgroundColor: light,
+  backgroundColor: base,
   leading: ResponsiveWidget.isSmallScreenSize(context) ? IconButton(
       onPressed: () {
         var state = scaffoldKey.currentState;
@@ -15,7 +15,7 @@ AppBar buildAppBar(BuildContext context, GlobalKey<ScaffoldState> scaffoldKey) =
         state.isDrawerOpen ? state.openEndDrawer() : state.openDrawer();
         scaffoldKey.currentState!.openDrawer();
       },
-      icon: Icon(Icons.menu, color: style.darker,),
+      icon: Icon(Icons.menu, color: style.base_contrast,),
   ) : Row(
     children: [
       Container(
@@ -29,23 +29,31 @@ AppBar buildAppBar(BuildContext context, GlobalKey<ScaffoldState> scaffoldKey) =
   ),
   title: Row(
     children: [
-      Visibility(
-          visible: !ResponsiveWidget.isSmallScreenSize(context),
-          child: CustomText('Canada', size: 20, weight: FontWeight.bold,)
-      ),
-      Expanded(child: Container()),
+      if (!ResponsiveWidget.isSmallScreenSize(context))
+        CustomText('Canada', size: 20, weight: FontWeight.bold,),
 
+      Expanded(child: Container()),
+      IconButton(
+        onPressed: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                  content: CustomText('Ich habe noch keine Funktion.', color: Colors.white,)
+              )
+          );
+        },
+        icon: Icon(Icons.notifications, color: style.primary,),
+      ),
       Container(
         width: 1,
         height: 22,
-        color: style.light_gray,
+        color: style.inactive,
       ),
-      SizedBox(width: 24,),
-      CustomText('Laslo Hauschild', color: light_gray,),
-      SizedBox(width: 16,),
+      SizedBox(width: 20,),
+      CustomText('Laslo Hauschild', color: inactive,),
+      SizedBox(width: 20,),
       Container(
         decoration: BoxDecoration(
-            color: style.red.withOpacity(.5),
+            color: style.primary,
             borderRadius: BorderRadius.circular(30)
         ),
         child: Container(
@@ -58,9 +66,13 @@ AppBar buildAppBar(BuildContext context, GlobalKey<ScaffoldState> scaffoldKey) =
           child: CircleAvatar(
             backgroundColor: Colors.white,
             child: IconButton(
-              tooltip: "I'm not doing anything yet.",
-              icon: Icon(Icons.person_outline, color: style.darker),
+              icon: Icon(Icons.person_outline, color: style.base_contrast),
               onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                      content: CustomText('Ich habe noch keine Funktion.', color: Colors.white,)
+                  )
+                );
               },
             ),
           ),
