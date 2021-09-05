@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:website/helpers/responsiveness.dart';
 import 'package:website/widgets/app_bar.dart';
-import 'package:website/widgets/page_large.dart';
-import 'package:website/widgets/page_small.dart';
+import 'package:website/widgets/large_page.dart';
+import 'package:website/widgets/small_page.dart';
 import 'package:website/widgets/side_menu.dart';
 
 class PageLayout extends StatelessWidget {

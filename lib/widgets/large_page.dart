@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:website/constants/style.dart' as style;
+import 'package:website/helpers/local_navigator.dart';
 import 'package:website/widgets/side_menu.dart';
 
 import 'custom_text.dart';
@@ -30,12 +31,7 @@ class LargePage extends StatelessWidget {
               child: Container(
                 color: style.base,
                 margin: EdgeInsets.all(20),
-                child: Center(
-                  child: CustomText(
-                    'Hier scheint es noch nichts zu geben... Komm später wieder.',
-                    size: 24,
-                  ),
-                ),
+                child: localNavigator(),
               ),
             ),
           ],

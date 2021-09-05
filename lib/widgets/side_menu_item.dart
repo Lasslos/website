@@ -14,11 +14,11 @@ class SideMenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onHover: (bool active) {
-        MenuController.instance.hoverRoute.value =
+        menuController.hoverRoute.value =
         active ? reference : null;
       },
       onTap: () {
-        MenuController.instance.activeRoute.value = reference;
+        menuController.activeRoute.value = reference;
       },
       child: ResponsiveWidget(
         largeSizedWidget: HorizontalSideMenuItem(reference),
