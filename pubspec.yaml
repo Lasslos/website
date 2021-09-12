@@ -11,18 +11,25 @@ dependencies:
   flutter:
     sdk: flutter
   google_fonts: ^2.1.0
-  charts_flutter: ^0.11.0
-  get: ^4.1.4
   rxdart: ^0.27.1
-  data_table_2: ^2.0.3
+  get: ^4.3.8
+  mysql1: ^0.19.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   pedantic: ^1.11.1
+  flutter_native_splash: ^1.2.3
 
 flutter:
   uses-material-design: true
+
+flutter_native_splash:
+  color: "#F7F8FC"
+  image: assets/icons/icon.png
+  android_gravity: center
+  ios_content_mode: center
+  web_image_mode: center
 
 assets:
   - assets/icons/

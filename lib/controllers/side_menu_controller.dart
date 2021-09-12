@@ -1,11 +1,10 @@
 import 'package:get/get.dart';
 import 'package:website/routing/routes.dart';
 
-MenuController menuController = MenuController.instance;
+final SideMenuController menuController = Get.find();
 
-class MenuController extends GetxController {
-  static MenuController instance = Get.find();
-  Rx<MyRoute> activeRoute = Rx<MyRoute>(routes.first);
+class SideMenuController extends GetxController {
+  Rx<MyRoute> activeRoute = sideMenuRoutes.first.obs;
   Rx<MyRoute?> hoverRoute = Rx<MyRoute?>(null);
 
   bool isActive(MyRoute route) => route == activeRoute.value;

@@ -7,6 +7,8 @@ import 'package:website/widgets/side_menu.dart';
 
 class PageLayout extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  final Widget child;
+  PageLayout(this.child);
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -17,8 +19,8 @@ class PageLayout extends StatelessWidget {
     ),
     drawerEnableOpenDragGesture: false,
     body: ResponsiveWidget(
-      largeSizedWidget: LargePage(),
-      smallSizedWidget: SmallPage(),
+      largeSizedWidget: LargePage(child),
+      smallSizedWidget: SmallPage(child),
     ),
   );
 }

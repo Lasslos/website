@@ -5,6 +5,6 @@ class OverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('OverviewPage');
+    return SelectableText('OverviewPage');
   }
 }

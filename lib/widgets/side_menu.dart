@@ -36,7 +36,7 @@ class SideMenu extends StatelessWidget {
 
   Widget _buildSideMenuColumn() {
     var children = <Widget>[];
-    routes.forEach((element) {
+    sideMenuRoutes.forEach((element) {
       children.add(Container(height: 10));
       children.add(SideMenuItem(element));
     });

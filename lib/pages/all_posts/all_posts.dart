@@ -5,6 +5,6 @@ class AllPostsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('AllPostsPage');
+    return SelectableText('AllPostsPage');
   }
 }
