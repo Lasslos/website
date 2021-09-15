@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:website/constants/style.dart';
+import 'package:get/get.dart';
 import 'package:website/helpers/responsiveness.dart';
 import 'package:website/constants/style.dart' as style;
 import 'package:website/widgets/custom_text.dart';
 
-AppBar buildAppBar(BuildContext context, GlobalKey<ScaffoldState> scaffoldKey) => AppBar(
-  backgroundColor: base,
-  leading: ResponsiveWidget.isSmallScreenSize(context) ? IconButton(
-      onPressed: () {
-        var state = scaffoldKey.currentState;
-        if (state == null) {
-          return;
-        }
-        state.isDrawerOpen ? state.openEndDrawer() : state.openDrawer();
-        scaffoldKey.currentState!.openDrawer();
+AppBar buildAppBar(GlobalKey<ScaffoldState> scaffoldKey) => AppBar(
+  leading: ResponsiveWidget.isSmallScreenSize() ? IconButton(
+    onPressed: () {
+      var state = scaffoldKey.currentState;
+      if (state == null) {
+        return;
+      }
+      state.isDrawerOpen ? state.openEndDrawer() : state.openDrawer();
+      scaffoldKey.currentState!.openDrawer();
       },
-      icon: Icon(Icons.menu, color: style.base_contrast,),
+    //Get.theme.colorScheme.onBackground doesn't work for some reason.
+    icon: Icon(Icons.menu, color: style.getOnBackgroundColor(Get.theme.brightness)),
   ) : Row(
     children: [
       Container(
@@ -29,49 +29,47 @@ AppBar buildAppBar(BuildContext context, GlobalKey<ScaffoldState> scaffoldKey) =
   ),
   title: Row(
     children: [
-      if (!ResponsiveWidget.isSmallScreenSize(context))
+      if (!ResponsiveWidget.isSmallScreenSize())
         CustomText('Canada', size: 20, weight: FontWeight.bold,),
 
       Expanded(child: Container()),
+
       IconButton(
         onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                  content: CustomText('Ich habe noch keine Funktion.', color: Colors.white,)
-              )
+          Get.rawSnackbar(
+            messageText: CustomText('Ich habe noch keine Funktion.'),
+            //color
           );
         },
-        icon: Icon(Icons.notifications, color: style.primary,),
+        icon: Icon(Icons.notifications),
       ),
       Container(
         width: 1,
         height: 22,
-        color: style.inactive,
+        color: style.gray,
       ),
       SizedBox(width: 20,),
-      CustomText('Laslo Hauschild', color: inactive,),
+      CustomText('Laslo Hauschild', color: style.gray,),
       SizedBox(width: 20,),
       Container(
         decoration: BoxDecoration(
-            color: style.primary,
+            color: Get.theme.colorScheme.primary,
             borderRadius: BorderRadius.circular(30)
         ),
         child: Container(
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: Get.theme.colorScheme.background,
               borderRadius: BorderRadius.circular(30)
           ),
           padding: EdgeInsets.all(2),
           margin: EdgeInsets.all(2),
           child: CircleAvatar(
-            backgroundColor: Colors.white,
+            backgroundColor: Get.theme.colorScheme.background,
             child: IconButton(
-              icon: Icon(Icons.person_outline, color: style.base_contrast),
+              icon: Icon(Icons.person_outline, color: style.getOnBackgroundColor(Get.theme.brightness)),
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                      content: CustomText('Ich habe noch keine Funktion.', color: Colors.white,)
-                  )
+                Get.rawSnackbar(
+                  messageText: Text('Ich habe noch keine Funktion.')
                 );
               },
             ),

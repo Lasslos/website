@@ -6,15 +6,20 @@ class CustomText extends StatelessWidget {
   final Color? color;
   final FontWeight? weight;
   final TextAlign? textAlign;
+  final bool selectable;
 
-  const CustomText(this.text, {this.size, this.color, this.weight, this.textAlign});
+  const CustomText(this.text, {this.size, this.color, this.weight, this.textAlign, this.selectable = true});
 
   @override
   Widget build(BuildContext context) {
-    return SelectableText(
+    return selectable ? SelectableText(
       text,
-      style: TextStyle(fontSize: size ?? 16, color: color ?? Colors.black, fontWeight: weight ?? FontWeight.normal),
+      style: TextStyle(fontSize: size, color: color, fontWeight: weight),
       textAlign: textAlign ?? TextAlign.center,
+    ) : Text(
+      text,
+      style: TextStyle(fontSize: size, color: color, fontWeight: weight),
+      textAlign: textAlign,
     );
   }
 }

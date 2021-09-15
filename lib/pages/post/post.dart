@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
-class PostPage extends StatelessWidget {
-  const PostPage({Key? key}) : super(key: key);
+import '../AbstractPage.dart';
 
+class PostPage extends AbstractPage {
   @override
-  Widget build(BuildContext context) {
-    return SelectableText('PostPage');
+  Route build(Map<String, String> arguments) {
+    return MaterialPageRoute(builder: (context) {
+      return SelectableText('PostPage');
+    });
   }
 }

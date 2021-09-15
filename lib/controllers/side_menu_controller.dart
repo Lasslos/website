@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
-import 'package:website/routing/routes.dart';
+import 'package:website/routing/my_route_information.dart';
 
-final SideMenuController menuController = Get.find();
+final SideMenuController side_menu_controller = Get.find();
 
 class SideMenuController extends GetxController {
-  Rx<MyRoute> activeRoute = sideMenuRoutes.first.obs;
-  Rx<MyRoute?> hoverRoute = Rx<MyRoute?>(null);
+  Rx<MyRouteInformation> activeRoute = sideMenuRoutes.first.obs;
+  Rx<MyRouteInformation?> hoverRoute = Rx<MyRouteInformation?>(null);
 
-  bool isActive(MyRoute route) => route == activeRoute.value;
-  bool isHovered(MyRoute route) => route == hoverRoute.value;
+  bool isActive(MyRouteInformation route) => route == activeRoute.value;
+  bool isHovered(MyRouteInformation route) => route == hoverRoute.value;
 }

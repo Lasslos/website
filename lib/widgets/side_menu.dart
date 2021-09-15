@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:website/constants/style.dart' as style;
 import 'package:website/helpers/responsiveness.dart';
 import 'package:website/widgets/side_menu_item.dart';
-import 'package:website/routing/routes.dart';
+import 'package:website/routing/my_route_information.dart';
 
 import 'custom_text.dart';
 
 class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
-    color: style.base,
     child: Column(
       children: [
-        if (ResponsiveWidget.isSmallScreenSize(context)) _buildTitle(),
+        if (ResponsiveWidget.isSmallScreenSize()) _buildTitle(),
         _buildSideMenuColumn(),
       ],
     ),

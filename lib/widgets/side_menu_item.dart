@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:website/controllers/menu_controller.dart';
+import 'package:get/get.dart';
+import 'package:website/controllers/side_menu_controller.dart';
 import 'package:website/helpers/responsiveness.dart';
-import 'package:website/routing/routes.dart';
+import 'package:website/routing/my_route_information.dart';
 import 'package:website/constants/style.dart' as style;
 import 'package:website/widgets/custom_text.dart';
 
 class SideMenuItem extends StatelessWidget {
-  final MyRoute reference;
+  final MyRouteInformation reference;
 
   SideMenuItem(this.reference);
 
@@ -14,11 +15,11 @@ class SideMenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onHover: (bool active) {
-        menuController.hoverRoute.value =
-        active ? reference : null;
+        side_menu_controller.hoverRoute.value = active ? reference : null;
       },
       onTap: () {
-        menuController.activeRoute.value = reference;
+        side_menu_controller.activeRoute.value = reference;
+        Get.toNamed(reference.path);
       },
       child: ResponsiveWidget(
         largeSizedWidget: HorizontalSideMenuItem(reference),
@@ -30,14 +31,14 @@ class SideMenuItem extends StatelessWidget {
 }
 
 class HorizontalSideMenuItem extends StatelessWidget {
-  final MyRoute reference;
+  final MyRouteInformation reference;
 
   const HorizontalSideMenuItem(this.reference);
 
   @override
   Widget build(BuildContext context) => reference.buildRouteStateWidget((state) =>
       Container(
-        color: state != RouteState.INACTIVE ? style.inactive.withOpacity(.1) : Colors.transparent,
+        color: state != RouteState.INACTIVE ? style.gray.withOpacity(.1) : Colors.transparent,
         child: Row(
           children: [
             Visibility(
@@ -48,7 +49,6 @@ class HorizontalSideMenuItem extends StatelessWidget {
               child: Container(
                 width: 4,
                 height: 60,
-                color: style.base_contrast,
               ),
             ),
 
@@ -65,8 +65,9 @@ class HorizontalSideMenuItem extends StatelessWidget {
             CustomText(
               reference.name,
               size: state == RouteState.INACTIVE ? 16 : 18,
-              color: state == RouteState.INACTIVE ? style.inactive : style.base_contrast,
+              color: state == RouteState.INACTIVE ? style.gray : null,
               weight: state != RouteState.ACTIVE ? FontWeight.normal : FontWeight.bold,
+              selectable: false,
             ),
           ],
         ),
@@ -75,14 +76,14 @@ class HorizontalSideMenuItem extends StatelessWidget {
 }
 
 class VerticalSideMenuItem extends StatelessWidget {
-  final MyRoute reference;
+  final MyRouteInformation reference;
 
   const VerticalSideMenuItem(this.reference);
 
   @override
   Widget build(BuildContext context) => reference.buildRouteStateWidget((state) =>
       Container(
-        color: state != RouteState.INACTIVE ? style.inactive.withOpacity(.1) : Colors.transparent,
+        color: state != RouteState.INACTIVE ? style.gray.withOpacity(.1) : Colors.transparent,
         child: Row(
           children: [
             Visibility(
@@ -93,7 +94,6 @@ class VerticalSideMenuItem extends StatelessWidget {
               child: Container(
                 width: 3,
                 height: 72,
-                color: style.base_contrast,
               ),
             ),
             Expanded(
@@ -112,8 +112,9 @@ class VerticalSideMenuItem extends StatelessWidget {
                   CustomText(
                     reference.name,
                     size: state == RouteState.INACTIVE ? 16 : 18,
-                    color: state == RouteState.INACTIVE ? style.inactive : style.base_contrast,
+                    color: state == RouteState.INACTIVE ? style.gray : null,
                     weight: state != RouteState.ACTIVE ? FontWeight.normal : FontWeight.bold,
+                    selectable: false,
                   ),
                 ],
               ),

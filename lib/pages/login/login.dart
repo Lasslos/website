@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:website/pages/AbstractPage.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
-
+class LoginPage extends AbstractPage {
   @override
-  Widget build(BuildContext context) {
-    return SelectableText('LoginPage');
+  Route build(Map<String, String> arguments) {
+    return MaterialPageRoute(builder: (context) {
+      return SelectableText('LoginPage');
+    });
   }
 }

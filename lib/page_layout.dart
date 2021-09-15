@@ -13,14 +13,22 @@ class PageLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
     key: scaffoldKey,
-    appBar: buildAppBar(context, scaffoldKey),
+    appBar: buildAppBar(scaffoldKey),
     drawer: Drawer(
-      child: SideMenu(),
+      child: ListView(
+        children: [
+          SideMenu()
+        ],
+      ),
     ),
     drawerEnableOpenDragGesture: false,
-    body: ResponsiveWidget(
-      largeSizedWidget: LargePage(child),
-      smallSizedWidget: SmallPage(child),
+    body: ListView(
+      children: [
+        ResponsiveWidget(
+          largeSizedWidget: LargePage(child),
+          smallSizedWidget: SmallPage(child),
+        ),
+      ]
     ),
   );
 }
