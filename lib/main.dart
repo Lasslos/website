@@ -1,51 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:website/controllers/side_menu_controller.dart';
+import 'package:vrouter/vrouter.dart';
 import 'package:website/constants/style.dart' as style;
-import 'package:website/page_layout.dart';
-import 'package:website/routing/route_information_parser.dart';
-import 'package:website/routing/router_delegate.dart';
-import 'package:website/routing/my_route_information.dart';
+import 'package:website/routing/my_routes.dart';
 
 void main() {
-  Get.put(PageController());
-  Get.put(SideMenuController());
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
-  Widget build(BuildContext context) => GetMaterialApp.router(
-    debugShowCheckedModeBanner: false,
-    title: 'Canada - Laslo Hauschild',
-    theme: _buildTheme(Brightness.light),
-    darkTheme: _buildTheme(Brightness.dark),
-    themeMode: ThemeMode.system,
-    routerDelegate: MyRouterDelegate(),
-    routeInformationParser: MyRouteInformationParser(),
-  );
+  Widget build(BuildContext context) => VRouter(
+        debugShowCheckedModeBanner: false,
+        title: 'Canada - Laslo Hauschild',
+        theme: _buildTheme(Brightness.light),
+        darkTheme: _buildTheme(Brightness.dark),
+        themeMode: ThemeMode.system,
+        routes: myRoutes,
+      );
 
   ThemeData _buildTheme(Brightness brightness) {
     var brightnessColor = style.getBackgroundColor(brightness);
     var antiBrightnessColor = style.getOnBackgroundColor(brightness);
+    var systemUiOverlayStyle = brightness == Brightness.light
+        ? SystemUiOverlayStyle.light
+        : SystemUiOverlayStyle.dark;
 
     return ThemeData(
       brightness: brightness,
       primarySwatch: Colors.green,
       backgroundColor: brightnessColor,
-      textTheme: _modifyDefaultTextTheme(TextTheme()),
+      textTheme: GoogleFonts.notoSansTextTheme(const TextTheme()),
       appBarTheme: AppBarTheme(
-        brightness: brightness,
+        systemOverlayStyle: systemUiOverlayStyle,
         backgroundColor: brightnessColor,
         foregroundColor: antiBrightnessColor,
-        textTheme: _modifyDefaultTextTheme(TextTheme()).apply(displayColor: antiBrightnessColor, bodyColor: antiBrightnessColor),
-        iconTheme: IconThemeData(
-          color: Colors.green
-        ),
+        toolbarTextStyle: const TextStyle(color: style.gray),
+        titleTextStyle: const TextStyle(),
+        iconTheme: const IconThemeData(color: Colors.green),
       ),
     );
   }
-  TextTheme _modifyDefaultTextTheme(TextTheme theme) => 
-      GoogleFonts.notoSansTextTheme(theme);
 }

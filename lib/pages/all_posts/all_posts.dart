@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:website/pages/AbstractPage.dart';
 
-class AllPostsPage extends AbstractPage {
+class AllPostsPage extends StatelessWidget {
+  const AllPostsPage({Key? key}) : super(key: key);
+
   @override
-  Route build(Map<String, String> arguments) {
-    return MaterialPageRoute(builder: (context) {
-      return SelectableText('AllPostsPage');
-    });
+  Widget build(BuildContext context) {
+    return const Center(
+      child: SelectableText('All Posts'),
+    );
   }
 }

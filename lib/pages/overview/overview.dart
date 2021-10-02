@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:website/pages/AbstractPage.dart';
 
-class OverviewPage extends AbstractPage {
+class OverviewPage extends StatelessWidget {
+  const OverviewPage({Key? key}) : super(key: key);
 
   @override
-  Route build(Map<String, String> arguments) {
-    return MaterialPageRoute(builder: (context) {
-      return SelectableText('OverviewPage');
-    });
+  Widget build(BuildContext context) {
+    return const Center(child: SelectableText('OverviewPage'));
   }
 }
