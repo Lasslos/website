@@ -21,7 +21,7 @@ class SideMenuItemWidget extends StatelessWidget {
       },
       onTap: () {
         activeRoute.value = sideMenuItem;
-        context.vRouter.toNamed(sideMenuItem.path);
+        context.vRouter.to(sideMenuItem.path);
       },
       child: ResponsiveWidget(
         largeSizedWidget:
@@ -61,7 +61,7 @@ class HorizontalSideMenuItemWidget extends StatelessWidget {
               ),
               SizedBox(width: MediaQuery.of(context).size.width / 75),
               Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(10),
                 child: Icon(
                   !isActive
                       ? sideMenuItem.iconInactive
@@ -110,7 +110,7 @@ class VerticalSideMenuItemWidget extends StatelessWidget {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(10),
                       child: Icon(
                         !isActive
                             ? sideMenuItem.iconInactive

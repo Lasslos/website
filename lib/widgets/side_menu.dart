@@ -19,8 +19,8 @@ class SideMenu extends StatelessWidget {
   Widget _buildTitle() => DrawerHeader(
         child: Row(
           children: [
-            Container(
-              margin: const EdgeInsets.all(16),
+            Padding(
+              padding: const EdgeInsets.all(20),
               child: Image.asset(
                 'icons/icon.png',
                 width: 46,
@@ -34,8 +34,11 @@ class SideMenu extends StatelessWidget {
   Widget _buildSideMenuColumn() {
     var children = <Widget>[];
     for (var element in sideMenuItems) {
-      children.add(Container(height: 10));
-      children.add(SideMenuItemWidget(sideMenuItem: element));
+      children.add(Padding(
+        //Padding around whole page makes it look weird with left padding
+        padding: const EdgeInsets.only(top: 5, bottom: 5, right: 20),
+        child: SideMenuItemWidget(sideMenuItem: element),
+      ));
     }
 
     return Column(

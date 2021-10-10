@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:website/helpers/responsiveness.dart';
-import 'package:website/widgets/top_navigation_bar.dart';
-import 'package:website/widgets/large_page.dart';
-import 'package:website/widgets/small_page.dart';
+import 'package:website/widgets/large_layout.dart';
+import 'package:website/widgets/small_layout.dart';
 import 'package:website/widgets/side_menu.dart';
+import 'package:website/widgets/top_navigation_bar.dart';
 
 class PageLayout extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
@@ -14,7 +14,7 @@ class PageLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         key: scaffoldKey,
-        appBar: buildAppBar(context, scaffoldKey),
+        appBar: MyAppBar(scaffoldKey: scaffoldKey).build(context),
         drawer: const Drawer(
           child: SingleChildScrollView(
             child: SideMenu(),
@@ -22,8 +22,8 @@ class PageLayout extends StatelessWidget {
         ),
         drawerEnableOpenDragGesture: false,
         body: ResponsiveWidget(
-          largeSizedWidget: LargePage(child: child),
-          smallSizedWidget: SmallPage(child: child),
+          largeSizedWidget: LargeLayout(child: child),
+          smallSizedWidget: SmallLayout(child: child),
         ),
       );
 }

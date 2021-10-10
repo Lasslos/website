@@ -5,6 +5,6 @@ class OverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: SelectableText('OverviewPage'));
+    return const SelectableText('OverviewPage');
   }
 }

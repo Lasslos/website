@@ -5,8 +5,6 @@ class LastPost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: SelectableText('Last Post'),
-    );
+    return const SelectableText('Last Post');
   }
 }

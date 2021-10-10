@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
       );
 
   ThemeData _buildTheme(Brightness brightness) {
-    var brightnessColor = style.getBackgroundColor(brightness);
-    var antiBrightnessColor = style.getOnBackgroundColor(brightness);
+    var brightnessColor = style.getBackgroundColor(brightness: brightness);
+    var antiBrightnessColor = style.getOnBackgroundColor(brightness: brightness);
     var systemUiOverlayStyle = brightness == Brightness.light
         ? SystemUiOverlayStyle.light
         : SystemUiOverlayStyle.dark;
@@ -32,7 +32,13 @@ class MyApp extends StatelessWidget {
     return ThemeData(
       brightness: brightness,
       primarySwatch: Colors.green,
-      backgroundColor: brightnessColor,
+      colorScheme: ColorScheme.fromSwatch(
+        primarySwatch: Colors.green,
+        primaryColorDark: Colors.green,
+        accentColor: Colors.redAccent,
+        brightness: brightness,
+        backgroundColor: brightnessColor,
+      ),
       textTheme: GoogleFonts.notoSansTextTheme(const TextTheme()),
       appBarTheme: AppBarTheme(
         systemOverlayStyle: systemUiOverlayStyle,

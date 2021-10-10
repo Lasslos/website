@@ -5,8 +5,10 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: SelectableText('Login Page'),
+    return const Scaffold(
+      body: Center(
+        child: SelectableText('Login Page'),
+      ),
     );
   }
 }
