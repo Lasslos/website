@@ -13,17 +13,23 @@ class PageLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        key: scaffoldKey,
-        appBar: MyAppBar(scaffoldKey: scaffoldKey).build(context),
-        drawer: const Drawer(
-          child: SingleChildScrollView(
-            child: SideMenu(),
+    key: scaffoldKey,
+    drawer: const Drawer(
+      child: SingleChildScrollView(
+        child: SideMenu(),
+      ),
+    ),
+    drawerEnableOpenDragGesture: false,
+    body: CustomScrollView(
+        slivers: [
+          buildSliverAppBar(context, scaffoldKey),
+          SliverToBoxAdapter(
+            child: ResponsiveWidget(
+              largeSizedWidget: LargeLayout(child: child),
+              smallSizedWidget: SmallLayout(child: child),
+            ),
           ),
-        ),
-        drawerEnableOpenDragGesture: false,
-        body: ResponsiveWidget(
-          largeSizedWidget: LargeLayout(child: child),
-          smallSizedWidget: SmallLayout(child: child),
-        ),
-      );
+        ]
+    ),
+  );
 }

@@ -45,8 +45,8 @@ class MyApp extends StatelessWidget {
         backgroundColor: brightnessColor,
         foregroundColor: antiBrightnessColor,
         toolbarTextStyle: const TextStyle(color: style.gray),
-        titleTextStyle: const TextStyle(),
-        iconTheme: const IconThemeData(color: Colors.green),
+        titleTextStyle: TextStyle(color: antiBrightnessColor),
+        iconTheme: IconThemeData(color: antiBrightnessColor),
       ),
     );
   }
