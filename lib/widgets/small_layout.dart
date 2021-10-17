@@ -6,10 +6,8 @@ class SmallLayout extends StatelessWidget {
   const SmallLayout({Key? key, required this.child}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => SingleChildScrollView(
-    child: Container(
-          margin: const EdgeInsets.all(20),
-          child: child,
-        ),
-  );
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.all(20),
+        child: child,
+      );
 }

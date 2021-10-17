@@ -8,23 +8,21 @@ class LargeLayout extends StatelessWidget {
   const LargeLayout({Key? key, required this.child}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Container(
-    margin: const EdgeInsets.all(20),
-    child: SingleChildScrollView(
-      child: Row(
-        children: [
-          const Expanded(child: SideMenu()),
-          Container(
-            width: 1,
-            color: style.gray,
-            margin: const EdgeInsets.only(top: 5, bottom: 5),
-          ),
-          Expanded(
-            flex: 5,
-            child: child,
-          ),
-        ],
-      ),
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.all(20),
+    child: Row(
+      children: [
+        const Expanded(child: SideMenu()),
+        Container(
+          width: 1,
+          color: style.gray,
+          padding: const EdgeInsets.only(top: 5, bottom: 5),
+        ),
+        Expanded(
+          flex: 5,
+          child: child,
+        ),
+      ],
     ),
   );
 }
