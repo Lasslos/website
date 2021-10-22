@@ -1,38 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:website/posts/post_manager.dart';
+import 'package:website/widgets/custom_text.dart';
+import 'package:website/widgets/posts_builder_widget.dart';
 
 class OverviewPage extends StatelessWidget {
   const OverviewPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<List<Post>>(
-      stream: PostManager.instance.stream,
-      initialData: PostManager.instance.posts,
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          var error = snapshot.error;
-          if (error is HttpPostException) {
-            return Center(
-              child: error.errorMessageWidget,
-            );
-          } else {
-            return const Center(
-              child: SelectableText(
-                'Something went wrong, and we are not entirely sure what it is.',
-              ),
-            );
-          }
-        }
+  Widget build(BuildContext context) => PostsBuilderWidget(
+    builder: (context, posts) => ListView(
+      children: [
+        _buildLastPostWidget(context, posts.last),
 
-        if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return const Center(
-            child: LinearProgressIndicator(),
-          );
-        }
+      ],
+    ),
+  );
 
-        return Text('YAY! ${snapshot.data.toString()}');
-      },
-    );
-  }
+  Widget _buildLastPostWidget(BuildContext context, Post lastPost) => Column(
+    mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SelectableText(lastPost.title, style: Theme.of(context).textTheme.headline3,),
+      SelectableText(lastPost.body),
+    ],
+  );
 }

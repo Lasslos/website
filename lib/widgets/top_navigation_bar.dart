@@ -1,3 +1,5 @@
+import 'package:dynamic_theme_mode/dynamic_theme_mode.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:website/helpers/responsiveness.dart';
 import 'package:website/constants/style.dart' as style;
@@ -9,7 +11,6 @@ class MyAppBar {
   const MyAppBar({required this.scaffoldKey});
 
   AppBar build(BuildContext context) => AppBar(
-
     leading: Padding(
       padding: const EdgeInsets.only(left: 20),
       child: ResponsiveWidget.isSmallScreenSize(context)
@@ -22,7 +23,7 @@ class MyAppBar {
           state.isDrawerOpen ? state.openEndDrawer() : state.openDrawer();
           scaffoldKey.currentState!.openDrawer();
         },
-        icon: Icon(Icons.menu), //TODO: Color
+        icon: Icon(Icons.menu, color: Theme.of(context).textTheme.headline6!.color),
       )
           : Image.asset(
         'icons/icon.png',
@@ -38,6 +39,12 @@ class MyAppBar {
             weight: FontWeight.bold,
           ),
         Expanded(child: Container()),
+        IconButton(
+          onPressed: () {
+            DynamicThemeMode.managerOf(context).switchBrightness(context);
+          },
+          icon: const Icon(Icons.brightness_medium),
+        ),
         IconButton(
           onPressed: () {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -70,4 +77,22 @@ class MyAppBar {
       ],
     ),
   );
+}
+
+extension SwitchBrightness on ThemeModeManager {
+  void switchBrightness(BuildContext context) {
+    Brightness current;
+    switch (themeMode) {
+      case ThemeMode.system:
+        current = MediaQuery.platformBrightnessOf(context);
+        break;
+      case ThemeMode.light:
+        current = Brightness.light;
+        break;
+      case ThemeMode.dark:
+        current = Brightness.dark;
+        break;
+    }
+    setThemeMode(current == Brightness.light ? ThemeMode.dark : ThemeMode.light);
+  }
 }

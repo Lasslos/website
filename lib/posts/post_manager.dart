@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:website/widgets/custom_text.dart';
 
-class Post {
+class Post implements Comparable<Post> {
   int id;
   String title;
   String body;
@@ -31,6 +31,11 @@ class Post {
     }
     return result as T;
   }
+
+  @override
+  int compareTo(other) {
+    return timeStamp.compareTo(other.timeStamp);
+  }
 }
 
 class PostManager {
@@ -41,6 +46,7 @@ class PostManager {
   Stream<List<Post>> get stream => _publicStreamController.stream;
 
   List<Post> posts = List.unmodifiable([]);
+  bool initialized = false;
 
   PostManager._private() {
     _startLifeCycle();
@@ -71,6 +77,9 @@ class PostManager {
       }
     );
     await _load();
+    await Future.delayed(const Duration(seconds: 1));
+    initialized = true;
+
   }
   Future<void> _load() async {
     try {
@@ -81,6 +90,7 @@ class PostManager {
       for (var jsonElement in json) {
         posts.add(Post.fromJSON(jsonElement));
       }
+      posts.sort();
       this.posts = List.unmodifiable(posts);
       _internalStreamController.add(this.posts);
     } on HttpException catch (e) {

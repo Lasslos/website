@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vrouter/vrouter.dart';
+import 'package:dynamic_theme_mode/dynamic_theme_mode.dart';
 import 'package:website/constants/style.dart' as style;
 import 'package:website/routing/my_routes.dart';
 
@@ -13,14 +14,19 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => VRouter(
+  Widget build(BuildContext context) => DynamicThemeMode(
+    initialThemeMode: ThemeMode.system,
+    builder: (BuildContext context, ThemeMode themeMode) {
+      return VRouter(
         debugShowCheckedModeBanner: false,
         title: 'Canada - Laslo Hauschild',
         theme: _buildTheme(Brightness.light),
         darkTheme: _buildTheme(Brightness.dark),
-        themeMode: ThemeMode.system,
+        themeMode: themeMode,
         routes: myRoutes,
       );
+    },
+  );
 
   ThemeData _buildTheme(Brightness brightness) {
     var brightnessColor = style.getBackgroundColor(brightness: brightness);
